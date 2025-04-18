@@ -143,6 +143,13 @@ export default function Footer() {
             >
               <Twitter className="h-5 w-5" />
             </a>
+            <a 
+              href="mailto:contact@cryptograntwire.com" 
+              className="text-brand hover:text-brand/80"
+              aria-label="Email us"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
           </div>
         </div>
       </div>

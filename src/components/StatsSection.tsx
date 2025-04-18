@@ -32,15 +32,15 @@ function Counter({ end, label, icon, suffix = "" }: CounterProps) {
   }, [end]);
   
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+    <div className="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex-1">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-gray-500 text-sm font-medium mb-1">{label}</p>
-          <h3 className="text-3xl font-bold font-serif flex items-center gap-1">
+          <h3 className="text-xl md:text-3xl font-bold font-serif flex items-center gap-1">
             {count.toLocaleString()}{suffix}
           </h3>
         </div>
-        <div className="bg-brand/10 p-3 rounded-full">
+        <div className="bg-brand/10 p-2 md:p-3 rounded-full">
           {icon}
         </div>
       </div>
@@ -50,37 +50,37 @@ function Counter({ end, label, icon, suffix = "" }: CounterProps) {
 
 export function StatsSection() {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-12 md:py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+        <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Our Impact</h2>
           <p className="text-gray-600 text-lg">
             Growing the Web3 grants ecosystem through curation and distribution
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-6">
           <Counter 
             end={874} 
             label="Total Updates" 
-            icon={<FileText className="h-6 w-6 text-brand" />} 
+            icon={<FileText className="h-5 w-5 md:h-6 md:w-6 text-brand" />} 
             suffix="+"
           />
           <Counter 
             end={4} 
             label="Curators" 
-            icon={<Users className="h-6 w-6 text-brand" />} 
+            icon={<Users className="h-5 w-5 md:h-6 md:w-6 text-brand" />} 
           />
           <Counter 
             end={1300000} 
             label="Post Views" 
-            icon={<Eye className="h-6 w-6 text-brand" />} 
+            icon={<Eye className="h-5 w-5 md:h-6 md:w-6 text-brand" />} 
             suffix="+"
           />
           <Counter 
             end={2450} 
             label="Subscribers" 
-            icon={<TrendingUp className="h-6 w-6 text-brand" />} 
+            icon={<TrendingUp className="h-5 w-5 md:h-6 md:w-6 text-brand" />} 
           />
         </div>
       </div>
