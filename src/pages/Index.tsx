@@ -69,11 +69,10 @@ const Index = () => {
                 opts={{
                   align: "start",
                   loop: true,
-                  dragFree: true,
                 }}
                 className="w-full"
               >
-                <CarouselContent className="-ml-4 flex">
+                <CarouselContent className="-ml-4">
                   <NewsFeed limit={6} />
                 </CarouselContent>
                 <div className="hidden md:flex">
