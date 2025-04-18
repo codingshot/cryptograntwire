@@ -1,7 +1,6 @@
-
 import { Link } from "react-router-dom";
 import { Separator } from "./ui/separator";
-import { ExternalLink, Mail, Twitter, Send } from "lucide-react";
+import { Twitter, Send, Mail } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -24,6 +23,34 @@ export default function Footer() {
             <p className="text-sm text-gray-600 max-w-xs">
               Every crypto grant opportunity, program updates, and the latest decentralized funding initiatives
             </p>
+            
+            <div className="flex space-x-4 items-center">
+              <a 
+                href="https://twitter.com/cryptograntwire" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-brand hover:text-brand/80"
+                aria-label="Follow us on Twitter"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a 
+                href="https://t.me/cryptograntwire" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-brand hover:text-brand/80"
+                aria-label="Join our Telegram"
+              >
+                <Send className="h-5 w-5" />
+              </a>
+              <a 
+                href="mailto:contact@cryptograntwire.com" 
+                className="text-brand hover:text-brand/80"
+                aria-label="Email us"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
           </div>
 
           <div className="space-y-4">
@@ -123,33 +150,6 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-sm text-gray-500">
             © {currentYear} Crypto Grant Wire. All rights reserved.
-          </div>
-          <div className="flex items-center space-x-4">
-            <a 
-              href="https://t.me/cryptograntwire" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-brand hover:text-brand/80"
-              aria-label="Join our Telegram"
-            >
-              <Send className="h-5 w-5" />
-            </a>
-            <a 
-              href="https://twitter.com/cryptograntwire" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-brand hover:text-brand/80"
-              aria-label="Follow us on Twitter"
-            >
-              <Twitter className="h-5 w-5" />
-            </a>
-            <a 
-              href="mailto:contact@cryptograntwire.com" 
-              className="text-brand hover:text-brand/80"
-              aria-label="Email us"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
           </div>
         </div>
       </div>
