@@ -7,7 +7,7 @@ import { defaultNewsData } from '@/utils/defaultData';
 import { toast } from 'sonner';
 import SearchFilters, { TimeFilter, SortOption } from './SearchFilters';
 import EmptyState from './EmptyState';
-import { CarouselItem } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
 
 interface NewsFeedProps {
   limit?: number;
@@ -152,6 +152,36 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
     );
   }
 
+  const renderNewsContent = () => {
+    if (filteredNews.length === 0) {
+      return <EmptyState resetFilters={resetFilters} searchTerm={searchTerm} />;
+    }
+
+    if (limit) {
+      return filteredNews.map((item) => (
+        <CarouselItem key={item.tweetId} className="md:basis-1/3">
+          <NewsCard 
+            item={item} 
+            showCuratorNotes={showCuratorNotes}
+          />
+        </CarouselItem>
+      ));
+    } else {
+      return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredNews.map((item) => (
+            <div key={item.tweetId}>
+              <NewsCard 
+                item={item} 
+                showCuratorNotes={showCuratorNotes}
+              />
+            </div>
+          ))}
+        </div>
+      );
+    }
+  };
+
   return (
     <div>
       {!limit && (
@@ -172,20 +202,7 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
         />
       )}
 
-      {filteredNews.length > 0 ? (
-        <div className={`grid ${limit ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'}`}>
-          {filteredNews.map((item) => (
-            <CarouselItem key={item.tweetId} className="md:basis-1/3">
-              <NewsCard 
-                item={item} 
-                showCuratorNotes={showCuratorNotes}
-              />
-            </CarouselItem>
-          ))}
-        </div>
-      ) : (
-        <EmptyState resetFilters={resetFilters} searchTerm={searchTerm} />
-      )}
+      {renderNewsContent()}
 
       {isUsingFallbackData && (
         <div className="mt-4 p-3 bg-amber-50 border-l-4 border-amber-500 text-amber-800 text-sm font-serif">
