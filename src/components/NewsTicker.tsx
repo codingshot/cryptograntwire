@@ -1,9 +1,14 @@
-
 import { useEffect, useState } from "react";
 import { fetchNews } from "@/services/api";
 import { NewsItem } from "@/types";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function NewsTicker() {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -44,18 +49,19 @@ export function NewsTicker() {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + news.length) % news.length);
   };
 
+  const truncateWords = (text: string, wordCount: number) => {
+    const words = text.split(' ');
+    if (words.length <= wordCount) return text;
+    return `${words.slice(0, wordCount).join(' ')}...`;
+  };
+
   if (loading || news.length === 0) {
     return (
       <div className="w-full py-4 bg-gray-100 text-center animate-pulse">
-        <p className="text-gray-500">Loading latest updates...</p>
+        <p className="text-gray-500">📰 Loading latest updates...</p>
       </div>
     );
   }
-
-  const formatTickerContent = (content: string) => {
-    // Limit the length of content for the ticker
-    return content.length > 100 ? content.substring(0, 100) + '...' : content;
-  };
 
   return (
     <div className="w-full py-3 bg-[#F6F6F7] border-y border-gray-200">
@@ -70,24 +76,33 @@ export function NewsTicker() {
           </button>
           
           <div className="overflow-hidden flex-1 mx-2">
-            <div className="flex items-center whitespace-nowrap">
+            <div className="flex items-center">
               <span className="text-news-dark font-serif font-bold mr-2">📰</span>
-              <div className="overflow-hidden">
+              <div className="overflow-hidden w-full">
                 <div 
                   className="whitespace-nowrap transition-transform duration-500 font-serif text-sm md:text-base"
                   style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                   {news.map((item, index) => (
-                    <a
-                      key={item.tweetId || index}
-                      href={`https://twitter.com/${item.username}/status/${item.tweetId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block w-full px-2 truncate hover:underline"
-                      aria-label={`News item: ${formatTickerContent(item.content)}`}
-                    >
-                      {formatTickerContent(item.content)}
-                    </a>
+                    <TooltipProvider key={item.tweetId || index}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <a
+                            href={`https://twitter.com/${item.username}/status/${item.tweetId}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block w-full px-2 truncate hover:underline"
+                            aria-label={item.content}
+                          >
+                            {truncateWords(item.content, 6)}
+                          </a>
+                        </TooltipTrigger>
+                        <TooltipContent className="max-w-md">
+                          <p className="font-serif">{item.content}</p>
+                          <p className="text-sm text-gray-500 mt-1">@{item.username}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   ))}
                 </div>
               </div>

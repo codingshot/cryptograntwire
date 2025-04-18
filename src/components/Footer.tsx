@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Separator } from "./ui/separator";
 import { Twitter, Send, Mail } from "lucide-react";
@@ -21,7 +22,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm text-gray-600 max-w-xs">
-              Every crypto grant opportunity, program updates, and the latest decentralized funding initiatives
+              📢 Every crypto grant opportunity, program updates, and the latest decentralized funding initiatives
             </p>
             
             <div className="flex space-x-4 items-center">
@@ -54,17 +55,16 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-serif font-bold text-lg">Feeds</h3>
+            <h3 className="font-serif font-bold text-lg">📊 Feeds</h3>
             <ul className="space-y-2">
               <li>
                 <a 
                   href="https://sovs.notion.site/d24bc00e3ed14139beb44b82a5e145c5?v=50ae5a8b531641e0b78f39a710f3ffa6" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900 inline-flex items-center gap-1"
+                  className="text-gray-600 hover:text-gray-900"
                 >
-                  <span>Complete Archive</span>
-                  <ExternalLink className="h-3.5 w-3.5" />
+                  Complete Archive
                 </a>
               </li>
               <li>
@@ -72,10 +72,9 @@ export default function Footer() {
                   href="https://app.x23.ai/feeds/cryptograntwire" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900 inline-flex items-center gap-1"
+                  className="text-gray-600 hover:text-gray-900"
                 >
-                  <span>x23 Feed</span>
-                  <ExternalLink className="h-3.5 w-3.5" />
+                  x23 Feed
                 </a>
               </li>
               <li>
@@ -83,17 +82,16 @@ export default function Footer() {
                   href="https://app.curate.fun/feed/grants" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900 inline-flex items-center gap-1"
+                  className="text-gray-600 hover:text-gray-900"
                 >
-                  <span>Curate Feed</span>
-                  <ExternalLink className="h-3.5 w-3.5" />
+                  Curate Feed
                 </a>
               </li>
             </ul>
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-serif font-bold text-lg">Navigation</h3>
+            <h3 className="font-serif font-bold text-lg">🧭 Navigation</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-600 hover:text-gray-900">Home</Link>
@@ -103,43 +101,6 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/learn" className="text-gray-600 hover:text-gray-900">Learn</Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="font-serif font-bold text-lg">Contact</h3>
-            <ul className="space-y-3">
-              <li>
-                <a 
-                  href="https://twitter.com/cryptograntwire" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900 inline-flex items-center gap-2"
-                >
-                  <Twitter className="h-4 w-4" />
-                  <span>Twitter</span>
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="https://t.me/cryptograntwire" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900 inline-flex items-center gap-2"
-                >
-                  <Send className="h-4 w-4" />
-                  <span>Telegram</span>
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="mailto:contact@cryptograntwire.com" 
-                  className="text-gray-600 hover:text-gray-900 inline-flex items-center gap-2"
-                >
-                  <Mail className="h-4 w-4" />
-                  <span>Email Us</span>
-                </a>
               </li>
             </ul>
           </div>

@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -81,7 +80,7 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-tight text-[#1A1F2C];
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
 
   .glass-effect {
@@ -162,4 +161,12 @@
 
 .newspaper-tag {
   @apply inline-block bg-[#F1F1F1] text-[#403E43] text-xs px-2 py-1 rounded-sm mr-2 mb-2;
+}
+
+/* Update font family definitions */
+@layer base {
+  :root {
+    --font-serif: 'Spectral', Georgia, serif;
+    --font-sans: 'Instrument Sans', system-ui, sans-serif;
+  }
 }
