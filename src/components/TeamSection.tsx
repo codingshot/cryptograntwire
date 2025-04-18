@@ -1,8 +1,13 @@
 
-import { useState } from "react";
-import { ArrowLeft, ArrowRight, Twitter, Globe } from "lucide-react";
+import { Twitter, Globe } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface TeamMember {
   name: string;
@@ -21,42 +26,12 @@ const teamMembers: TeamMember[] = [
     twitter: "https://twitter.com/sovs_notion",
     website: "https://sovs.notion.site",
     bio: "Founder of Crypto Grant Wire and curator of Web3 grants information. Building community around decentralized funding."
-  },
-  {
-    name: "Curator 2",
-    role: "Governance Specialist",
-    avatar: "/lovable-uploads/bcf84bec-3fde-4e6c-acd7-65e52fbbaaab.png",
-    twitter: "https://twitter.com",
-    bio: "Focuses on governance proposals and DAO treasury decisions across major ecosystems."
-  },
-  {
-    name: "Curator 3",
-    role: "Developer Relations",
-    avatar: "/lovable-uploads/2d4ceafd-1824-4085-bac7-a50af005350d.png",
-    twitter: "https://twitter.com",
-    bio: "Tracks developer grants and technical documentation from major protocols."
-  },
-  {
-    name: "Curator 4",
-    role: "Thought Leadership",
-    avatar: "/lovable-uploads/603d52e2-2c07-43a9-80a0-67ce5195aa2b.png",
-    website: "https://example.com",
-    bio: "Curates opinion pieces and analysis on the future of Web3 funding models."
   }
 ];
 
 export function TeamSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextMember = () => {
-    setCurrentIndex((prev) => (prev + 1) % teamMembers.length);
-  };
-
-  const prevMember = () => {
-    setCurrentIndex((prev) => (prev - 1 + teamMembers.length) % teamMembers.length);
-  };
-
-  const currentMember = teamMembers[currentIndex];
+  const showControls = teamMembers.length > 1;
+  const showCarousel = teamMembers.length > 3;
 
   return (
     <section className="py-16 bg-white">
@@ -67,86 +42,80 @@ export function TeamSection() {
             Meet the curators behind Crypto Grant Wire
           </p>
         </div>
-        
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-lg shadow-sm border p-6 md:p-8">
-            <div className="flex flex-col md:flex-row items-center gap-6">
-              <div className="flex-shrink-0">
-                <Avatar className="h-24 w-24 md:h-32 md:w-32">
-                  <AvatarImage src={currentMember.avatar} alt={currentMember.name} />
-                  <AvatarFallback className="text-2xl">{currentMember.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-              </div>
-              
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="font-serif text-2xl font-bold">{currentMember.name}</h3>
-                <p className="text-brand mb-3">{currentMember.role}</p>
-                
-                <p className="text-gray-600 mb-4 font-serif">{currentMember.bio}</p>
-                
-                <div className="flex gap-3 justify-center md:justify-start">
-                  {currentMember.twitter && (
-                    <a 
-                      href={currentMember.twitter} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-brand"
-                      aria-label={`${currentMember.name}'s Twitter`}
-                    >
-                      <Twitter className="h-5 w-5" />
-                    </a>
-                  )}
-                  
-                  {currentMember.website && (
-                    <a 
-                      href={currentMember.website} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-brand"
-                      aria-label={`${currentMember.name}'s Website`}
-                    >
-                      <Globe className="h-5 w-5" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex justify-center mt-6 gap-2">
-              {teamMembers.map((_, index) => (
-                <button
-                  key={index}
-                  className={`h-2 w-2 rounded-full transition-colors ${
-                    index === currentIndex ? "bg-brand" : "bg-gray-300"
-                  }`}
-                  onClick={() => setCurrentIndex(index)}
-                  aria-label={`Show team member ${index + 1}`}
-                />
+
+        <div className="max-w-7xl mx-auto">
+          {showCarousel ? (
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {teamMembers.map((member, index) => (
+                  <CarouselItem key={index} className="md:basis-1/3">
+                    <TeamMemberCard member={member} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="-left-4" />
+              <CarouselNext className="-right-4" />
+            </Carousel>
+          ) : (
+            <div className={`grid ${teamMembers.length > 1 ? 'grid-cols-1 md:grid-cols-3 gap-6' : 'place-items-center'}`}>
+              {teamMembers.map((member, index) => (
+                <TeamMemberCard key={index} member={member} />
               ))}
             </div>
-            
-            <div className="flex justify-between mt-6">
-              <Button 
-                variant="outline" 
-                size="sm" 
-                onClick={prevMember}
-                className="flex items-center gap-1"
-              >
-                <ArrowLeft className="h-4 w-4" /> Previous
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                size="sm" 
-                onClick={nextMember}
-                className="flex items-center gap-1"
-              >
-                Next <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
+  );
+}
+
+function TeamMemberCard({ member }: { member: TeamMember }) {
+  return (
+    <div className="bg-white rounded-lg shadow-sm border p-6 md:p-8">
+      <div className="flex flex-col items-center gap-6">
+        <Avatar className="h-24 w-24 md:h-32 md:w-32">
+          <AvatarImage src={member.avatar} alt={member.name} />
+          <AvatarFallback className="text-2xl">{member.name.charAt(0)}</AvatarFallback>
+        </Avatar>
+        
+        <div className="text-center">
+          <h3 className="font-serif text-2xl font-bold">{member.name}</h3>
+          <p className="text-brand mb-3">{member.role}</p>
+          <p className="text-gray-600 mb-4 font-serif">{member.bio}</p>
+          
+          <div className="flex gap-3 justify-center">
+            {member.twitter && (
+              <a 
+                href={member.twitter} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-brand"
+                aria-label={`${member.name}'s Twitter`}
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+            )}
+            
+            {member.website && (
+              <a 
+                href={member.website} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-brand"
+                aria-label={`${member.name}'s Website`}
+              >
+                <Globe className="h-5 w-5" />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
