@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -45,17 +44,7 @@ export default function SubmitNewsForm() {
     setTweetUrl(url);
     const isValid = validateTweetUrl(url);
     setIsValidTweet(isValid);
-    
-    // Simulate tweet preview (in a real app, you'd fetch the tweet data)
-    if (isValid) {
-      const username = url.split('/')[3];
-      setTweetPreview({
-        username,
-        content: "Preview of the tweet content would appear here. In a production environment, this would fetch the actual tweet content."
-      });
-    } else {
-      setTweetPreview(null);
-    }
+    setTweetPreview(null);
   };
 
   const handleSubmitTweet = () => {
@@ -112,18 +101,6 @@ export default function SubmitNewsForm() {
               />
             </div>
             
-            {tweetPreview && (
-              <div className="border rounded-md p-3 bg-gray-50">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                    <Twitter size={16} />
-                  </div>
-                  <span className="font-medium">@{tweetPreview.username}</span>
-                </div>
-                <p className="text-sm">{tweetPreview.content}</p>
-              </div>
-            )}
-            
             <div>
               <label htmlFor="notes" className="text-sm font-medium block mb-1">Your Notes (Optional)</label>
               <Textarea 
@@ -136,8 +113,8 @@ export default function SubmitNewsForm() {
           </div>
           
           <div className="flex items-center justify-between space-x-2">
-            <div className="p-3 bg-gray-100 rounded flex-1 overflow-hidden">
-              <code className="text-sm">{submissionText}</code>
+            <div className="p-3 bg-muted rounded flex-1 overflow-hidden">
+              <code className="text-sm font-mono">{submissionText}</code>
             </div>
             <Button onClick={handleCopy} variant="outline" size="sm">
               Copy

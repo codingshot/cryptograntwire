@@ -9,11 +9,11 @@ import { Link } from "react-router-dom";
 
 export function FAQSection() {
   return (
-    <section className="py-16 bg-background">
+    <section className="py-16 bg-background border-t border-border">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-10">
-          <h2 className="font-sans text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-          <p className="text-secondary text-lg font-sans">
+          <h2 className="font-sans text-3xl font-bold mb-4 text-foreground tracking-tight">Frequently Asked Questions</h2>
+          <p className="text-secondary text-lg">
             Everything you need to know about Crypto Grant Wire
           </p>
         </div>
@@ -53,13 +53,13 @@ export function FAQSection() {
               <AccordionItem 
                 key={index} 
                 value={`item-${index + 1}`}
-                className="notion-block border-none"
+                className="bg-card border border-border rounded-lg overflow-hidden"
               >
-                <AccordionTrigger className="font-sans text-lg hover:no-underline px-6 py-4">
+                <AccordionTrigger className="font-sans text-lg hover:no-underline px-6 py-4 text-foreground">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="px-6 pb-4 text-secondary">
-                  <p className="font-sans">{faq.a}</p>
+                <AccordionContent className="px-6 pb-4 text-secondary border-t border-border">
+                  <p className="font-sans pt-4">{faq.a}</p>
                 </AccordionContent>
               </AccordionItem>
             ))}
