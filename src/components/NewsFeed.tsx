@@ -1,27 +1,28 @@
+
 import { useState, useEffect, useMemo } from 'react';
 import { NewsItem } from '@/types';
-import { fetchNews, formatDate } from '@/services/api';
+import { fetchNews } from '@/services/api';
 import NewsCard from './NewsCard';
 import { Loader2 } from 'lucide-react';
 import { defaultNewsData } from '@/utils/defaultData';
 import { toast } from 'sonner';
 import SearchFilters, { TimeFilter, SortOption } from './SearchFilters';
 import EmptyState from './EmptyState';
-import SubmitNewsForm from './SubmitNewsForm';
 
-const NewsFeed = () => {
+interface NewsFeedProps {
+  limit?: number;
+}
+
+const NewsFeed = ({ limit }: NewsFeedProps) => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isUsingFallbackData, setIsUsingFallbackData] = useState(false);
-
-  // Search and filter state
   const [searchTerm, setSearchTerm] = useState('');
   const [showCuratorNotes, setShowCuratorNotes] = useState(true);
   const [timeFilter, setTimeFilter] = useState<TimeFilter>('all');
   const [sortOrder, setSortOrder] = useState<SortOption>('newest');
   const [searchBy, setSearchBy] = useState<'all' | 'content' | 'username' | 'curator'>('all');
-  const [showSubmitForm, setShowSubmitForm] = useState(false);
 
   useEffect(() => {
     const getNews = async () => {
@@ -34,7 +35,6 @@ const NewsFeed = () => {
       } catch (err) {
         console.error('Error fetching news:', err);
         setError('Unable to load news from API. Showing fallback data.');
-        // Use default data in case of any error
         setNews(defaultNewsData);
         setIsUsingFallbackData(true);
         toast.error('Unable to load latest news from API. Showing fallback data.');
@@ -67,7 +67,6 @@ const NewsFeed = () => {
   const filteredNews = useMemo(() => {
     if (news.length === 0) return [];
 
-    // First apply time filter
     let filtered = [...news];
     
     if (timeFilter !== 'all') {
@@ -95,7 +94,6 @@ const NewsFeed = () => {
       filtered = filtered.filter(item => new Date(item.createdAt) >= timeThreshold);
     }
 
-    // Then apply search term filter
     if (searchTerm.trim() !== '') {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(item => {
@@ -120,21 +118,20 @@ const NewsFeed = () => {
       });
     }
 
-    // Apply sort order
     filtered.sort((a, b) => {
       const dateA = new Date(a.createdAt).getTime();
       const dateB = new Date(b.createdAt).getTime();
       return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
     });
 
-    return filtered;
-  }, [news, searchTerm, timeFilter, sortOrder, showCuratorNotes, searchBy]);
+    return limit ? filtered.slice(0, limit) : filtered;
+  }, [news, searchTerm, timeFilter, sortOrder, showCuratorNotes, searchBy, limit]);
 
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px]">
         <Loader2 className="h-8 w-8 text-brand animate-spin mb-2" />
-        <p className="text-gray-500">Loading latest stablecoin news...</p>
+        <p className="text-gray-500">Loading latest updates...</p>
       </div>
     );
   }
@@ -155,24 +152,26 @@ const NewsFeed = () => {
 
   return (
     <div>
-      <SearchFilters
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        showCuratorNotes={showCuratorNotes}
-        setShowCuratorNotes={setShowCuratorNotes}
-        timeFilter={timeFilter}
-        setTimeFilter={setTimeFilter}
-        sortOrder={sortOrder}
-        setSortOrder={setSortOrder}
-        searchBy={searchBy}
-        setSearchBy={setSearchBy}
-        resetFilters={resetFilters}
-        hasActiveFilters={hasActiveFilters}
-        curatorLabel="Show Curator"
-      />
+      {!limit && (
+        <SearchFilters
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          showCuratorNotes={showCuratorNotes}
+          setShowCuratorNotes={setShowCuratorNotes}
+          timeFilter={timeFilter}
+          setTimeFilter={setTimeFilter}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+          searchBy={searchBy}
+          setSearchBy={setSearchBy}
+          resetFilters={resetFilters}
+          hasActiveFilters={hasActiveFilters}
+          curatorLabel="Show Curator"
+        />
+      )}
 
       {filteredNews.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className={`grid grid-cols-1 ${!limit ? 'md:grid-cols-2 lg:grid-cols-3' : ''} gap-6`}>
           {filteredNews.map((item) => (
             <NewsCard 
               key={item.tweetId} 

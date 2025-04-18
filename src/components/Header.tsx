@@ -1,111 +1,40 @@
 
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, Send, Upload, BookOpen } from 'lucide-react';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import SubmitNewsForm from './SubmitNewsForm';
+import { Link } from "react-router-dom";
 
-const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isSubmitDialogOpen, setIsSubmitDialogOpen] = useState(false);
-
-  // Track scroll position to change header style
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+export default function Header() {
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-white py-5'}`}>
-      <div className="container-narrow flex items-center justify-between">
-        <Link to="/" className="flex items-center">
-          <img src="/lovable-uploads/2d4ceafd-1824-4085-bac7-a50af005350d.png" alt="stablecoins.press logo" className="h-10 md:h-12" />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <Link 
-            to="/learn" 
-            className="text-black hover:text-brand transition-colors flex items-center gap-1" 
-          >
-            <BookOpen className="h-5 w-5" />
-            <span>Learn</span>
+    <header className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b z-50">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <Link to="/" className="flex items-center space-x-2">
+            <img 
+              src="/lovable-uploads/4601136e-22c8-49fc-a4fc-1a70ec652ade.png" 
+              alt="Crypto Grant Wire logo" 
+              className="h-10 md:h-12" 
+            />
+            <span className="font-semibold text-xl">
+              Crypto Grant Wire
+            </span>
           </Link>
-          <a 
-            href="https://t.me/stablecoinspress" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-black hover:text-brand transition-colors" 
-            aria-label="Telegram"
-          >
-            <Send className="h-5 w-5" />
-          </a>
-          <Dialog open={isSubmitDialogOpen} onOpenChange={setIsSubmitDialogOpen}>
-            <DialogTrigger asChild>
-              <button className="px-4 py-2 bg-brand text-white rounded-md hover:bg-brand/90 transition-colors flex items-center gap-2">
-                <Upload className="h-4 w-4" />
-                Submit News
-              </button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md p-0">
-              <SubmitNewsForm onClose={() => setIsSubmitDialogOpen(false)} />
-            </DialogContent>
-          </Dialog>
-        </nav>
 
-        {/* Mobile Menu Button */}
-        <button className="md:hidden text-black" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-md animate-fade-in-up">
-          <div className="container py-4 flex flex-col space-y-4">
-            <Link 
-              to="/learn" 
-              className="flex items-center text-black font-medium hover:text-brand transition-colors px-4 py-2 gap-2" 
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <BookOpen className="h-5 w-5" />
-              <span>Learn</span>
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link to="/news" className="text-gray-600 hover:text-gray-900">
+              News
             </Link>
-            <a 
-              href="https://t.me/stablecoinspress" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="flex items-center text-black font-medium hover:text-brand transition-colors px-4 py-2 gap-2" 
-              onClick={() => setIsMobileMenuOpen(false)}
+            <Link to="/learn" className="text-gray-600 hover:text-gray-900">
+              Learn
+            </Link>
+            <a
+              href="https://t.me/cryptograntwire"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900"
             >
-              <Send className="h-5 w-5" />
-              <span>Telegram</span>
+              Telegram
             </a>
-            <div className="px-4 py-2">
-              <Dialog open={isSubmitDialogOpen} onOpenChange={setIsSubmitDialogOpen}>
-                <DialogTrigger asChild>
-                  <button 
-                    className="w-full flex justify-center items-center px-4 py-2 bg-brand text-white rounded-md hover:bg-brand/90 transition-colors gap-2"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <Upload className="h-4 w-4" />
-                    Submit News
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md p-0">
-                  <SubmitNewsForm onClose={() => setIsSubmitDialogOpen(false)} />
-                </DialogContent>
-              </Dialog>
-            </div>
-          </div>
+          </nav>
         </div>
-      )}
+      </div>
     </header>
   );
-};
-
-export default Header;
+}

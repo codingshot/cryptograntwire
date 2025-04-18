@@ -1,12 +1,10 @@
 
 import { NewsItem } from '@/types';
-import sampleData from './sampleData';
 import { defaultNewsData } from '@/utils/defaultData';
 
 export const fetchNews = async (): Promise<NewsItem[]> => {
   try {
-    // Fetch from the live API
-    const response = await fetch('https://stablecoins-rss.up.railway.app/api/items');
+    const response = await fetch('https://cryptograntwire-rss.up.railway.app/api/items');
     
     if (!response.ok) {
       throw new Error(`API responded with status: ${response.status}`);
@@ -14,7 +12,6 @@ export const fetchNews = async (): Promise<NewsItem[]> => {
     
     const data = await response.json();
     
-    // Map API response to our NewsItem format
     return data.map((item: any) => ({
       tweetId: item.guid?.split('/').pop() || '',
       userId: item.author?.[0]?.link?.split('/').pop() || '',
@@ -32,14 +29,11 @@ export const fetchNews = async (): Promise<NewsItem[]> => {
     }));
   } catch (error) {
     console.error('API Error:', error);
-    // Fallback to default data in case of any error
     return defaultNewsData;
   }
 };
 
-// Add a helper function for date formatting
-export const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
+export const formatDate = (date: Date): string => {
   return new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',
