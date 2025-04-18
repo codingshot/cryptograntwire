@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useMemo } from 'react';
 import { NewsItem } from '@/types';
 import { fetchNews } from '@/services/api';
@@ -8,6 +7,7 @@ import { defaultNewsData } from '@/utils/defaultData';
 import { toast } from 'sonner';
 import SearchFilters, { TimeFilter, SortOption } from './SearchFilters';
 import EmptyState from './EmptyState';
+import { CarouselItem } from '@/components/ui/carousel';
 
 interface NewsFeedProps {
   limit?: number;
@@ -120,7 +120,6 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
       });
     }
 
-    // Sort the news items by date
     filtered.sort((a, b) => {
       const dateA = new Date(a.createdAt).getTime();
       const dateB = new Date(b.createdAt).getTime();
