@@ -7,7 +7,7 @@ import { defaultNewsData } from '@/utils/defaultData';
 import { toast } from 'sonner';
 import SearchFilters, { TimeFilter, SortOption } from './SearchFilters';
 import EmptyState from './EmptyState';
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
+import { CarouselItem } from '@/components/ui/carousel';
 
 interface NewsFeedProps {
   limit?: number;
@@ -158,28 +158,28 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
     }
 
     if (limit) {
-      return filteredNews.map((item) => (
-        <CarouselItem key={item.tweetId} className="md:basis-1/3">
+      return filteredNews.slice(0, limit).map((item) => (
+        <CarouselItem key={item.tweetId} className="basis-full md:basis-1/3">
           <NewsCard 
             item={item} 
             showCuratorNotes={showCuratorNotes}
           />
         </CarouselItem>
       ));
-    } else {
-      return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredNews.map((item) => (
-            <div key={item.tweetId}>
-              <NewsCard 
-                item={item} 
-                showCuratorNotes={showCuratorNotes}
-              />
-            </div>
-          ))}
-        </div>
-      );
     }
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredNews.map((item) => (
+          <div key={item.tweetId}>
+            <NewsCard 
+              item={item} 
+              showCuratorNotes={showCuratorNotes}
+            />
+          </div>
+        ))}
+      </div>
+    );
   };
 
   return (

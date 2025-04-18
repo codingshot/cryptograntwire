@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -59,14 +58,19 @@ const Index = () => {
         <section className="py-16 bg-card">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
-              <h2 className="font-sans text-3xl font-bold mb-10">📰 Latest Updates</h2>
+              <div className="flex items-center justify-between mb-10">
+                <h2 className="font-sans text-3xl font-bold">📰 Latest Updates</h2>
+                <Button variant="outline" size="lg" className="font-sans" asChild>
+                  <Link to="/news">See all news</Link>
+                </Button>
+              </div>
+              
               <Carousel 
                 opts={{
                   align: "start",
                   loop: true,
                   dragFree: true,
-                  containScroll: false,
-                }} 
+                }}
                 className="w-full"
               >
                 <CarouselContent className="-ml-4">
