@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
@@ -40,7 +41,7 @@ export function FeaturesSection() {
           }} className="w-full">
             <CarouselContent className="gap-2">
               {features.map((feature, index) => (
-                <CarouselItem key={index} className="basis-full md:basis-1/4 pl-1">
+                <CarouselItem key={index} className="basis-full md:basis-1/3 pl-1">
                   <Card className="h-full notion-block">
                     <CardHeader className="p-4 pb-2">
                       <div className="flex items-center gap-2 mb-1">
@@ -65,3 +66,4 @@ export function FeaturesSection() {
       </div>
     </section>;
 }
+
