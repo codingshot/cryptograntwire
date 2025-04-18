@@ -23,9 +23,11 @@ export function PoweredBySection() {
                   className="block"
                 >
                   <div className="text-center">
-                    <div className="h-16 w-16 md:h-20 md:w-20 mx-auto mb-3 bg-gray-100 rounded-full flex items-center justify-center">
-                      <span className="text-lg md:text-xl font-bold">x23</span>
-                    </div>
+                    <img 
+                      src="/lovable-uploads/4e26afd0-1b77-4b26-91ac-35227728a9d1.png" 
+                      alt="x23.ai logo" 
+                      className="h-16 w-16 md:h-20 md:w-20 mx-auto mb-3 object-contain"
+                    />
                     <p className="font-medium">x23.ai</p>
                   </div>
                 </a>
@@ -46,9 +48,11 @@ export function PoweredBySection() {
                   className="block"
                 >
                   <div className="text-center">
-                    <div className="h-16 w-16 md:h-20 md:w-20 mx-auto mb-3 bg-gray-100 rounded-full flex items-center justify-center">
-                      <span className="text-lg md:text-xl font-bold">CF</span>
-                    </div>
+                    <img 
+                      src="/lovable-uploads/c132fcc6-50c3-4fdd-8a33-8e0cbbe18965.png" 
+                      alt="curate.fun logo" 
+                      className="h-16 w-16 md:h-20 md:w-20 mx-auto mb-3 object-contain"
+                    />
                     <p className="font-medium">curate.fun</p>
                   </div>
                 </a>
@@ -62,12 +66,21 @@ export function PoweredBySection() {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <div className="text-center">
-                  <div className="h-16 w-16 md:h-20 md:w-20 mx-auto mb-3 bg-gray-100 rounded-full flex items-center justify-center">
-                    <span className="text-lg md:text-xl font-bold">MG</span>
+                <a 
+                  href="https://metagov.org" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="text-center">
+                    <img 
+                      src="/lovable-uploads/1c9d6b9c-06af-4319-a7a8-9f1384d3c746.png" 
+                      alt="MetaGov logo" 
+                      className="h-16 w-16 md:h-20 md:w-20 mx-auto mb-3 object-contain"
+                    />
+                    <p className="font-medium">MetaGov</p>
                   </div>
-                  <p className="font-medium">MetaGov</p>
-                </div>
+                </a>
               </TooltipTrigger>
               <TooltipContent>
                 <p className="text-sm max-w-xs">MetaGov is a non-profit that powers governance initiatives</p>
