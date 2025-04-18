@@ -83,20 +83,23 @@ const Index = () => {
         {/* Featured News */}
         <section className="py-16 bg-card">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <h2 className="font-sans text-3xl font-bold mb-10">📰 Latest Updates</h2>
               <Carousel
                 opts={{
                   align: "start",
-                  loop: true
+                  loop: true,
+                  dragFree: true,
                 }}
-                className="w-full relative"
+                className="w-full"
               >
-                <CarouselContent className="-ml-4">
+                <CarouselContent className="-ml-2 md:-ml-4">
                   <NewsFeed limit={6} />
                 </CarouselContent>
-                <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2" />
-                <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2" />
+                <div className="hidden md:flex">
+                  <CarouselPrevious className="-left-12" />
+                  <CarouselNext className="-right-12" />
+                </div>
               </Carousel>
             </div>
           </div>
