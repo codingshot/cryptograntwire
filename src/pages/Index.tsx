@@ -10,26 +10,16 @@ import { StatsSection } from '@/components/StatsSection';
 import { PoweredBySection } from '@/components/PoweredBySection';
 import { TeamSection } from '@/components/TeamSection';
 import { FAQSection } from '@/components/FAQSection';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselPrevious,
-  CarouselNext
-} from '@/components/ui/carousel';
-
+import { Carousel, CarouselContent, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
 const Index = () => {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsPageLoaded(true);
     }, 100);
-
     return () => clearTimeout(timer);
   }, []);
-
-  return (
-    <div className="flex flex-col min-h-screen">
+  return <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
         {/* Hero Section */}
         <section className={`pt-24 md:pt-32 pb-16 bg-background transition-opacity duration-700 ${isPageLoaded ? 'opacity-100' : 'opacity-0'}`}>
@@ -38,33 +28,16 @@ const Index = () => {
               <h1 className="font-sans text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-2 leading-tight">
                 Every Crypto Grant in Real Time
               </h1>
-              <h2 className="font-sans text-xl md:text-2xl text-secondary mb-6">
-                Every crypto grant opportunity, program updates, and the latest decentralized funding initiatives
-              </h2>
+              
               <Separator className="w-16 h-0.5 bg-accent mx-auto" />
-              <p className="text-xl text-secondary mx-auto font-sans leading-relaxed max-w-2xl">
-                Stay updated on the latest grants, DAO governance decisions, and funding opportunities across the blockchain ecosystem.
-              </p>
+              <p className="text-xl text-secondary mx-auto font-sans leading-relaxed max-w-2xl">Every crypto grant opportunity, program updates, and the latest decentralized funding initiatives</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
-                <Button 
-                  size="lg" 
-                  className="font-sans px-6 bg-accent hover:bg-accent/90 flex items-center gap-2"
-                  asChild
-                >
-                  <a 
-                    href="https://t.me/cryptograntwire" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
+                <Button size="lg" className="font-sans px-6 bg-accent hover:bg-accent/90 flex items-center gap-2" asChild>
+                  <a href="https://t.me/cryptograntwire" target="_blank" rel="noopener noreferrer">
                     Subscribe <ExternalLink className="h-4 w-4" />
                   </a>
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="font-sans px-6 border-foreground text-foreground hover:bg-muted"
-                  asChild
-                >
+                <Button variant="outline" size="lg" className="font-sans px-6 border-foreground text-foreground hover:bg-muted" asChild>
                   <Link to="/news" className="flex items-center gap-2">
                     See News <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -85,14 +58,11 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
               <h2 className="font-sans text-3xl font-bold mb-10">📰 Latest Updates</h2>
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                  dragFree: true,
-                }}
-                className="w-full"
-              >
+              <Carousel opts={{
+              align: "start",
+              loop: true,
+              dragFree: true
+            }} className="w-full">
                 <CarouselContent className="-ml-2 md:-ml-4">
                   <NewsFeed limit={6} />
                 </CarouselContent>
@@ -117,8 +87,6 @@ const Index = () => {
         {/* FAQ Section */}
         <FAQSection />
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
