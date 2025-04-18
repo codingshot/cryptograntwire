@@ -29,7 +29,7 @@ const Index = () => {
                 Every Crypto Grant in Real Time
               </h1>
               
-              <Separator className="w-16 h-0.5 bg-accent mx-auto" />
+              
               <p className="text-xl text-secondary mx-auto font-sans leading-relaxed max-w-2xl">Every crypto grant opportunity, program updates, and the latest decentralized funding initiatives</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
                 <Button size="lg" className="font-sans px-6 bg-accent hover:bg-accent/90 flex items-center gap-2" asChild>
