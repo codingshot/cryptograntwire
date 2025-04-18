@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -10,10 +11,12 @@ import { StatsSection } from '@/components/StatsSection';
 import { PoweredBySection } from '@/components/PoweredBySection';
 import { TeamSection } from '@/components/TeamSection';
 import { FAQSection } from '@/components/FAQSection';
-import Carousel from '@/components/Carousel';
-import CarouselContent from '@/components/CarouselContent';
-import CarouselPrevious from '@/components/CarouselPrevious';
-import CarouselNext from '@/components/CarouselNext';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselPrevious,
+  CarouselNext
+} from '@/components/ui/carousel';
 
 const Index = () => {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
