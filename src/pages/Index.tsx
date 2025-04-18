@@ -60,12 +60,16 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
               <h2 className="font-sans text-3xl font-bold mb-10">📰 Latest Updates</h2>
-              <Carousel opts={{
-              align: "start",
-              loop: true,
-              dragFree: true
-            }} className="w-full">
-                <CarouselContent className="-ml-2 md:-ml-4">
+              <Carousel 
+                opts={{
+                  align: "start",
+                  loop: true,
+                  dragFree: true,
+                  containScroll: false,
+                }} 
+                className="w-full"
+              >
+                <CarouselContent className="-ml-4">
                   <NewsFeed limit={6} />
                 </CarouselContent>
                 <div className="hidden md:flex">
