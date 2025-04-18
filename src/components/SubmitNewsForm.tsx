@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { SendHorizontal } from "lucide-react";
 
 export default function SubmitNewsForm() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,8 +27,9 @@ export default function SubmitNewsForm() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="w-full">
-          Submit News
+        <Button variant="outline" className="flex items-center space-x-1">
+          <SendHorizontal className="h-4 w-4" />
+          <span>Submit News</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
@@ -45,6 +47,12 @@ export default function SubmitNewsForm() {
               <li>Add optional notes or context</li>
               <li>Submit for review</li>
             </ol>
+          </div>
+          <div className="p-3 bg-gray-100 rounded flex items-center justify-between">
+            <code className="text-sm">{submissionText}</code>
+            <Button onClick={handleCopy} variant="outline" size="sm">
+              Copy
+            </Button>
           </div>
         </div>
       </DialogContent>

@@ -13,7 +13,7 @@ function App() {
         <Header />
         <main className="flex-grow">
           <Routes>
-            <Route path="/" element={<div className="container mx-auto px-4 py-8"></div>} />
+            <Route path="/" element={<Navigate to="/news" replace />} />
             <Route path="/news" element={<News />} />
             <Route path="/learn" element={<Learn />} />
             <Route path="*" element={<NotFound />} />

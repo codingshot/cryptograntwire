@@ -1,5 +1,6 @@
 
 import { Link } from "react-router-dom";
+import SubmitNewsForm from "./SubmitNewsForm";
 
 export default function Header() {
   return (
@@ -24,6 +25,7 @@ export default function Header() {
             <Link to="/learn" className="text-gray-600 hover:text-gray-900">
               Learn
             </Link>
+            <SubmitNewsForm />
             <a
               href="https://t.me/cryptograntwire"
               target="_blank"
