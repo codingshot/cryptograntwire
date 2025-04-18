@@ -10,15 +10,15 @@ interface NewsCardProps {
 
 const NewsCard = ({ item, showCuratorNotes = true }: NewsCardProps) => {
   return (
-    <Card className="overflow-hidden hover:shadow-md transition-shadow">
+    <Card className="overflow-hidden hover:shadow-md transition-shadow bg-white border-gray-200">
       <CardContent className="p-6">
         <div className="space-y-4">
-          <div>
-            <p className="text-sm text-gray-600">{item.content}</p>
+          <div className="space-y-3">
+            <p className="font-serif text-[#1A1F2C] leading-relaxed">{item.content}</p>
           </div>
 
-          <div className="flex items-center justify-between text-sm">
-            <div className="text-gray-500">
+          <div className="flex items-center justify-between text-sm border-t pt-4">
+            <div className="text-[#8E9196] font-serif italic">
               {formatDate(new Date(item.createdAt))}
             </div>
             <div className="text-brand">
@@ -26,7 +26,7 @@ const NewsCard = ({ item, showCuratorNotes = true }: NewsCardProps) => {
                 href={`https://x.com/${item.username}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline"
+                className="hover:underline font-serif"
               >
                 {item.username}
               </a>
@@ -35,7 +35,7 @@ const NewsCard = ({ item, showCuratorNotes = true }: NewsCardProps) => {
 
           {showCuratorNotes && item.curatorNotes && (
             <div className="pt-4 border-t">
-              <p className="text-sm text-gray-600 italic">
+              <p className="text-sm text-[#403E43] italic font-serif">
                 {item.curatorNotes}
               </p>
             </div>

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -78,14 +79,13 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-jersey text-brand font-medium tracking-tight;
+    @apply font-serif tracking-tight text-[#1A1F2C];
   }
 
   .glass-effect {
     @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
   }
 
-  /* Page transitions */
   .page-enter {
     opacity: 0;
     transform: translateY(10px);
