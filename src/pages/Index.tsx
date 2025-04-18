@@ -1,5 +1,4 @@
-
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ExternalLink } from 'lucide-react';
@@ -85,19 +84,19 @@ const Index = () => {
         <section className="py-16 bg-card">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <h2 className="font-sans text-3xl font-bold mb-10">📝 Latest Updates</h2>
+              <h2 className="font-sans text-3xl font-bold mb-10">📰 Latest Updates</h2>
               <Carousel
                 opts={{
                   align: "start",
-                  loop: true,
+                  loop: true
                 }}
-                className="w-full"
+                className="w-full relative"
               >
-                <CarouselContent className="flex">
-                  <NewsFeed limit={3} />
+                <CarouselContent className="-ml-4">
+                  <NewsFeed limit={6} />
                 </CarouselContent>
-                <CarouselPrevious className="-left-12" />
-                <CarouselNext className="-right-12" />
+                <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2" />
+                <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2" />
               </Carousel>
             </div>
           </div>
