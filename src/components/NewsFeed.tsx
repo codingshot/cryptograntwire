@@ -28,7 +28,9 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
     const getNews = async () => {
       try {
         setIsLoading(true);
+        console.log('Fetching news from API...');
         const data = await fetchNews();
+        console.log('Fetched news data:', data);
         setNews(data);
         setError(null);
         setIsUsingFallbackData(false);
@@ -118,6 +120,7 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
       });
     }
 
+    // Sort the news items by date
     filtered.sort((a, b) => {
       const dateA = new Date(a.createdAt).getTime();
       const dateB = new Date(b.createdAt).getTime();
@@ -131,17 +134,17 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px]">
         <Loader2 className="h-8 w-8 text-brand animate-spin mb-2" />
-        <p className="text-gray-500">Loading latest updates...</p>
+        <p className="text-[#8E9196] font-serif">Loading latest updates...</p>
       </div>
     );
   }
 
   if (error && news.length === 0) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-        <p className="text-red-600">{error}</p>
+      <div className="bg-red-50 border-l-4 border-red-500 p-6 text-center">
+        <p className="text-red-800 font-serif">{error}</p>
         <button 
-          className="mt-4 px-4 py-2 bg-brand text-white rounded-md hover:bg-brand/90 transition-colors"
+          className="mt-4 px-4 py-2 bg-brand text-white rounded-md hover:bg-brand/90 transition-colors font-serif"
           onClick={() => window.location.reload()}
         >
           Try Again
@@ -166,7 +169,7 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
           setSearchBy={setSearchBy}
           resetFilters={resetFilters}
           hasActiveFilters={hasActiveFilters}
-          curatorLabel="Show Curator"
+          curatorLabel="Show Curator Notes"
         />
       )}
 
@@ -185,7 +188,7 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
       )}
 
       {isUsingFallbackData && (
-        <div className="col-span-full mt-4 p-3 bg-amber-50 border border-amber-200 rounded-md text-amber-700 text-sm">
+        <div className="mt-4 p-3 bg-amber-50 border-l-4 border-amber-500 text-amber-800 text-sm font-serif">
           Note: Showing fallback data due to API issues. Some content may not be current.
         </div>
       )}

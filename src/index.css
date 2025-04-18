@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -34,7 +35,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 
   .dark {
@@ -74,12 +75,13 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-[#F9F9F9] text-foreground antialiased;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-tight text-[#1A1F2C];
+    letter-spacing: -0.01em;
   }
 
   .glass-effect {
@@ -127,4 +129,37 @@
 .blur-load > img {
   opacity: 0;
   transition: opacity 500ms ease-in-out;
+}
+
+/* Newspaper-specific styles */
+.article-title {
+  @apply font-serif text-xl md:text-2xl font-bold leading-tight;
+}
+
+.article-meta {
+  @apply text-[#8E9196] text-sm font-serif border-b border-gray-200 pb-2 mb-4;
+}
+
+.article-body {
+  @apply font-serif text-base leading-relaxed;
+}
+
+.news-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.editor-note {
+  @apply bg-[#F6F6F7] p-3 border-l-4 border-brand italic text-[#403E43] text-sm mt-4;
+}
+
+.newspaper-section-title {
+  @apply font-serif text-xl font-bold border-b-2 border-[#1A1F2C] pb-2 mb-6;
+}
+
+.newspaper-card {
+  @apply bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow;
+}
+
+.newspaper-tag {
+  @apply inline-block bg-[#F1F1F1] text-[#403E43] text-xs px-2 py-1 rounded-sm mr-2 mb-2;
 }

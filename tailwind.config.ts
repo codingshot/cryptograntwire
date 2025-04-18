@@ -20,7 +20,7 @@ export default {
     extend: {
       fontFamily: {
         serif: ["Playfair Display", "Georgia", "serif"],
-        sans: ["SF Pro Display", "system-ui", "sans-serif"],
+        sans: ["Source Serif Pro", "system-ui", "sans-serif"],
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -66,7 +66,12 @@ export default {
           'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))'
-        }
+        },
+        'news-dark': '#1A1F2C',
+        'news-gray': '#8E9196',
+        'news-text': '#403E43',
+        'news-light': '#F9F9F9',
+        'news-accent': '#2775C9',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -106,7 +111,28 @@ export default {
         'fade-in-up': 'fade-in-up 0.5s ease-out',
         'slide-in-right': 'slide-in-right 0.4s ease-out',
         'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-      }
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            p: {
+              fontFamily: 'Playfair Display, serif',
+            },
+            h1: {
+              fontFamily: 'Playfair Display, serif',
+              fontWeight: '700',
+            },
+            h2: {
+              fontFamily: 'Playfair Display, serif',
+              fontWeight: '700',
+            },
+            h3: {
+              fontFamily: 'Playfair Display, serif',
+              fontWeight: '600',
+            },
+          },
+        },
+      },
     }
   },
   plugins: [require("tailwindcss-animate")],
