@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -93,11 +92,11 @@ const Index = () => {
                 }}
                 className="w-full"
               >
-                <CarouselContent>
+                <CarouselContent className="flex">
                   <NewsFeed limit={3} />
                 </CarouselContent>
-                <CarouselPrevious className="-left-4" />
-                <CarouselNext className="-right-4" />
+                <CarouselPrevious className="-left-12" />
+                <CarouselNext className="-right-12" />
               </Carousel>
             </div>
           </div>

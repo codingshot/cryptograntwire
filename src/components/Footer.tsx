@@ -27,7 +27,7 @@ export default function Footer() {
             
             <div className="flex space-x-4 items-center">
               <a 
-                href="https://twitter.com/cryptograntwire" 
+                href="https://x.com/sovereignsignal" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-brand hover:text-brand/80"
@@ -45,9 +45,11 @@ export default function Footer() {
                 <Send className="h-5 w-5" />
               </a>
               <a 
-                href="mailto:contact@cryptograntwire.com" 
+                href="https://x.com/sovereignsignal" 
+                target="_blank" 
+                rel="noopener noreferrer"
                 className="text-brand hover:text-brand/80"
-                aria-label="Email us"
+                aria-label="Contact"
               >
                 <Mail className="h-5 w-5" />
               </a>

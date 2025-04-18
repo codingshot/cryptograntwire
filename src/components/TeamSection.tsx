@@ -22,9 +22,9 @@ const teamMembers: TeamMember[] = [
   {
     name: "Sov",
     role: "Lead Curator",
-    avatar: "/lovable-uploads/9db227a7-1560-4567-9f71-0eedd2d5e8f0.png",
-    twitter: "https://twitter.com/sovs_notion",
-    website: "https://sovs.notion.site",
+    avatar: "https://pbs.twimg.com/profile_images/1484584540433629186/EMQB081b_400x400.jpg",
+    twitter: "https://x.com/sovereignsignal",
+    website: "https://linktr.ee/sovereignsignal",
     bio: "Founder of Crypto Grant Wire and curator of Web3 grants information. Building community around decentralized funding."
   }
 ];
