@@ -52,8 +52,8 @@ export function NewsTicker() {
 
   if (loading || news.length === 0) {
     return (
-      <div className="w-full py-4 bg-gray-100 text-center animate-pulse">
-        <p className="text-gray-500">📰 Loading latest updates...</p>
+      <div className="w-full py-4 bg-muted text-center animate-pulse">
+        <p className="text-secondary">📰 Loading latest updates...</p>
       </div>
     );
   }
@@ -64,12 +64,12 @@ export function NewsTicker() {
   ];
 
   return (
-    <div className="w-full py-3 bg-[#F6F6F7] border-y border-gray-200">
+    <div className="w-full py-3 bg-muted border-y border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <button 
             onClick={goToPrev}
-            className="p-1 rounded-full hover:bg-gray-200 transition-colors hidden sm:flex"
+            className="p-1 rounded-full hover:bg-card transition-colors hidden sm:flex"
             aria-label="Previous news"
           >
             <ChevronLeft className="h-4 w-4" />
@@ -84,21 +84,21 @@ export function NewsTicker() {
                       href={`https://twitter.com/${item.username}/status/${item.tweetId}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block px-2"
+                      className="block px-2 cursor-pointer"
                     >
                       <div className="flex items-center justify-between">
-                        <p className="truncate flex-1 font-serif hover:underline">
+                        <p className="truncate flex-1 font-sans hover:underline">
                           {item.content}
                         </p>
-                        <span className="text-xs text-gray-500 ml-2 whitespace-nowrap">
+                        <span className="text-xs text-secondary ml-2 whitespace-nowrap font-mono">
                           {formatDistanceToNow(new Date(item.createdAt), { addSuffix: true })}
                         </span>
                       </div>
                     </a>
                   </TooltipTrigger>
-                  <TooltipContent className="max-w-md">
-                    <p className="font-serif">{item.content}</p>
-                    <p className="text-sm text-gray-500 mt-1">@{item.username}</p>
+                  <TooltipContent className="max-w-md bg-card border-border">
+                    <p className="font-sans">{item.content}</p>
+                    <p className="text-sm text-secondary mt-1 font-mono">@{item.username}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -108,7 +108,7 @@ export function NewsTicker() {
           <div className="flex items-center space-x-2">
             <button 
               onClick={goToNext}
-              className="p-1 rounded-full hover:bg-gray-200 transition-colors hidden sm:flex"
+              className="p-1 rounded-full hover:bg-card transition-colors hidden sm:flex"
               aria-label="Next news"
             >
               <ChevronRight className="h-4 w-4" />
@@ -116,7 +116,7 @@ export function NewsTicker() {
             
             <Link 
               to="/news" 
-              className="text-xs text-brand hover:underline font-medium"
+              className="text-xs text-accent hover:underline font-medium"
             >
               See all news →
             </Link>

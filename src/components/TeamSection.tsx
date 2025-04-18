@@ -34,11 +34,11 @@ export function TeamSection() {
   const showCarousel = teamMembers.length > 3;
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-card">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-10">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Our Team</h2>
-          <p className="text-gray-600 text-lg">
+          <h2 className="font-sans text-3xl md:text-4xl font-bold mb-4">👥 Our Team</h2>
+          <p className="text-secondary text-lg">
             Meet the curators behind Crypto Grant Wire
           </p>
         </div>
@@ -77,7 +77,7 @@ export function TeamSection() {
 
 function TeamMemberCard({ member }: { member: TeamMember }) {
   return (
-    <div className="bg-white rounded-lg shadow-sm border p-6 md:p-8">
+    <div className="notion-block card-hover">
       <div className="flex flex-col items-center gap-6">
         <Avatar className="h-24 w-24 md:h-32 md:w-32">
           <AvatarImage src={member.avatar} alt={member.name} />
@@ -85,9 +85,9 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
         </Avatar>
         
         <div className="text-center">
-          <h3 className="font-serif text-2xl font-bold">{member.name}</h3>
-          <p className="text-brand mb-3">{member.role}</p>
-          <p className="text-gray-600 mb-4 font-serif">{member.bio}</p>
+          <h3 className="font-sans text-2xl font-bold">{member.name}</h3>
+          <p className="text-accent mb-3">{member.role}</p>
+          <p className="text-secondary mb-4 font-sans">{member.bio}</p>
           
           <div className="flex gap-3 justify-center">
             {member.twitter && (
@@ -95,7 +95,7 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
                 href={member.twitter} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-brand"
+                className="text-secondary hover:text-accent transition-colors"
                 aria-label={`${member.name}'s Twitter`}
               >
                 <Twitter className="h-5 w-5" />
@@ -107,7 +107,7 @@ function TeamMemberCard({ member }: { member: TeamMember }) {
                 href={member.website} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-brand"
+                className="text-secondary hover:text-accent transition-colors"
                 aria-label={`${member.name}'s Website`}
               >
                 <Globe className="h-5 w-5" />

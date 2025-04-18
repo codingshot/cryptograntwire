@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SubmitNewsForm from "./SubmitNewsForm";
@@ -19,8 +20,8 @@ export default function Header() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-white/80 backdrop-blur-md"
-    } border-b`}>
+      isScrolled ? "frosted-glass shadow-sm" : "frosted-glass"
+    }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center space-x-2" aria-label="Crypto Grant Wire Home">
@@ -31,20 +32,20 @@ export default function Header() {
               width="48"
               height="48"
             />
-            <span className="font-serif font-semibold text-xl text-[#1A1F2C] hidden sm:inline-block">
+            <span className="font-sans font-semibold text-xl text-foreground hidden sm:inline-block">
               Crypto Grant Wire
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-6 font-serif">
-            <Link to="/news" className="text-[#403E43] hover:text-[#1A1F2C] transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-brand after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+          <nav className="hidden md:flex items-center space-x-6 font-sans">
+            <Link to="/news" className="magic-line text-secondary hover:text-foreground transition-colors">
               News
             </Link>
             <SubmitNewsForm />
             <Button 
               variant="outline" 
               size="sm" 
-              className="border-brand text-brand hover:bg-brand hover:text-white transition-colors"
+              className="border-accent text-accent hover:bg-accent hover:text-white transition-colors"
               asChild
             >
               <a
@@ -61,7 +62,7 @@ export default function Header() {
           <Button 
             variant="outline" 
             size="sm" 
-            className="border-brand text-brand hover:bg-brand hover:text-white transition-colors md:hidden"
+            className="border-accent text-accent hover:bg-accent hover:text-white transition-colors md:hidden"
             asChild
           >
             <a
