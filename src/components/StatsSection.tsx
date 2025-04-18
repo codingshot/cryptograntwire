@@ -32,15 +32,15 @@ function Counter({ end, label, icon, suffix = "" }: CounterProps) {
   }, [end]);
   
   return (
-    <div className="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex-1">
+    <div className="bg-card p-4 md:p-6 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow flex-1">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-gray-500 text-sm font-medium mb-1">{label}</p>
-          <h3 className="text-xl md:text-3xl font-bold font-serif flex items-center gap-1">
+          <p className="text-secondary text-sm font-sans mb-1">{label}</p>
+          <h3 className="text-xl md:text-3xl font-bold font-sans flex items-center gap-1">
             {count.toLocaleString()}{suffix}
           </h3>
         </div>
-        <div className="bg-brand/10 p-2 md:p-3 rounded-full">
+        <div className="bg-accent/10 p-2 md:p-3 rounded-full">
           {icon}
         </div>
       </div>
@@ -50,11 +50,11 @@ function Counter({ end, label, icon, suffix = "" }: CounterProps) {
 
 export function StatsSection() {
   return (
-    <section className="py-12 md:py-16 bg-gray-50">
+    <section className="py-12 md:py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">Our Impact</h2>
-          <p className="text-gray-600 text-lg">
+          <h2 className="font-sans text-3xl md:text-4xl font-bold mb-4">Our Impact</h2>
+          <p className="text-secondary text-lg font-sans">
             Growing the Web3 grants ecosystem through curation and distribution
           </p>
         </div>

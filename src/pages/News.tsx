@@ -18,20 +18,20 @@ const News = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-grow pt-24 md:pt-28 pb-12 bg-[#F9F9F9]">
+      <main className="flex-grow pt-24 md:pt-28 pb-12 bg-background">
         <div className="container-narrow">
           <section className={`mb-8 transition-opacity duration-700 ${isPageLoaded ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="text-center space-y-4">
-              <h1 className="font-serif text-4xl md:text-5xl font-bold text-[#1A1F2C] mb-3 tracking-tight">
-                Latest in Web3 Grants & Governance
+            <div className="text-center space-y-4 notion-block p-8">
+              <h1 className="font-sans text-4xl md:text-5xl font-bold text-foreground mb-3 tracking-tight">
+                📰 Latest in Web3 Grants & Governance
               </h1>
-              <Separator className="w-16 h-0.5 bg-brand mx-auto" />
-              <p className="text-lg text-[#403E43] max-w-2xl mx-auto font-serif leading-relaxed">
+              <Separator className="w-16 h-0.5 bg-accent mx-auto" />
+              <p className="text-lg text-secondary max-w-2xl mx-auto font-sans leading-relaxed">
                 An update feed detailing the happenings across Web3 grants, DAO Governance, and insightful analysis.
               </p>
               <div className="pt-4">
                 <Button 
-                  className="font-serif flex items-center gap-2"
+                  className="font-sans flex items-center gap-2"
                   variant="outline"
                   asChild
                 >
@@ -48,10 +48,10 @@ const News = () => {
           </section>
           
           <section className={`transition-opacity duration-700 delay-100 ${isPageLoaded ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="mb-12">
+            <div className="mb-12 notion-block p-8">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-serif font-semibold text-[#1A1F2C] border-l-4 border-brand pl-3">Latest Updates</h2>
-                <span className="text-sm text-[#8E9196] italic font-serif">Real-time Grants Feed</span>
+                <h2 className="text-2xl font-sans font-semibold text-foreground border-l-4 border-accent pl-3">Latest Updates</h2>
+                <span className="text-sm text-secondary italic font-mono">Real-time Grants Feed</span>
               </div>
               <NewsFeed />
             </div>

@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useMemo } from 'react';
 import { NewsItem } from '@/types';
 import { fetchNews } from '@/services/api';
@@ -8,6 +7,7 @@ import { defaultNewsData } from '@/utils/defaultData';
 import { toast } from 'sonner';
 import SearchFilters, { TimeFilter, SortOption } from './SearchFilters';
 import EmptyState from './EmptyState';
+import { CarouselItem } from '@/components/ui/carousel';
 
 interface NewsFeedProps {
   limit?: number;
@@ -120,7 +120,6 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
       });
     }
 
-    // Sort the news items by date
     filtered.sort((a, b) => {
       const dateA = new Date(a.createdAt).getTime();
       const dateB = new Date(b.createdAt).getTime();
@@ -130,28 +129,35 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
     return limit ? filtered.slice(0, limit) : filtered;
   }, [news, searchTerm, timeFilter, sortOrder, showCuratorNotes, searchBy, limit]);
 
-  if (isLoading) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[400px]">
-        <Loader2 className="h-8 w-8 text-brand animate-spin mb-2" />
-        <p className="text-[#8E9196] font-serif">Loading latest updates...</p>
-      </div>
-    );
-  }
+  const renderNewsContent = () => {
+    if (filteredNews.length === 0) {
+      return <EmptyState resetFilters={resetFilters} searchTerm={searchTerm} />;
+    }
 
-  if (error && news.length === 0) {
+    if (limit) {
+      return filteredNews.map((item) => (
+        <CarouselItem key={item.tweetId} className="md:basis-1/3 sm:basis-1/2 basis-full pl-4">
+          <NewsCard 
+            item={item} 
+            showCuratorNotes={showCuratorNotes}
+          />
+        </CarouselItem>
+      ));
+    }
+
     return (
-      <div className="bg-red-50 border-l-4 border-red-500 p-6 text-center">
-        <p className="text-red-800 font-serif">{error}</p>
-        <button 
-          className="mt-4 px-4 py-2 bg-brand text-white rounded-md hover:bg-brand/90 transition-colors font-serif"
-          onClick={() => window.location.reload()}
-        >
-          Try Again
-        </button>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredNews.map((item) => (
+          <div key={item.tweetId}>
+            <NewsCard 
+              item={item} 
+              showCuratorNotes={showCuratorNotes}
+            />
+          </div>
+        ))}
       </div>
     );
-  }
+  };
 
   return (
     <div>
@@ -173,19 +179,7 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
         />
       )}
 
-      {filteredNews.length > 0 ? (
-        <div className={`grid grid-cols-1 ${!limit ? 'md:grid-cols-2 lg:grid-cols-3' : ''} gap-6`}>
-          {filteredNews.map((item) => (
-            <NewsCard 
-              key={item.tweetId} 
-              item={item} 
-              showCuratorNotes={showCuratorNotes}
-            />
-          ))}
-        </div>
-      ) : (
-        <EmptyState resetFilters={resetFilters} searchTerm={searchTerm} />
-      )}
+      {renderNewsContent()}
 
       {isUsingFallbackData && (
         <div className="mt-4 p-3 bg-amber-50 border-l-4 border-amber-500 text-amber-800 text-sm font-serif">

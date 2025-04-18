@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -19,8 +20,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ["DM Serif Display", "Georgia", "serif"],
         sans: ["Inter", "system-ui", "sans-serif"],
+        mono: ["Roboto Mono", "Menlo", "monospace"],
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -29,10 +30,10 @@ export default {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: '#2775C9',
+          DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))'
         },
-        brand: '#2775C9',
+        accent: '#D32F2F',
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))'
@@ -45,10 +46,6 @@ export default {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))'
         },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))'
-        },
         popover: {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))'
@@ -57,21 +54,6 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        sidebar: {
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--sidebar-primary))',
-          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--sidebar-accent))',
-          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))'
-        },
-        'news-dark': '#1A1F2C',
-        'news-gray': '#8E9196',
-        'news-text': '#403E43',
-        'news-light': '#F9F9F9',
-        'news-accent': '#2775C9',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -116,18 +98,18 @@ export default {
         DEFAULT: {
           css: {
             p: {
-              fontFamily: 'Playfair Display, serif',
+              fontFamily: 'Inter, sans-serif',
             },
             h1: {
-              fontFamily: 'Playfair Display, serif',
+              fontFamily: 'Inter, sans-serif',
               fontWeight: '700',
             },
             h2: {
-              fontFamily: 'Playfair Display, serif',
+              fontFamily: 'Inter, sans-serif',
               fontWeight: '700',
             },
             h3: {
-              fontFamily: 'Playfair Display, serif',
+              fontFamily: 'Inter, sans-serif',
               fontWeight: '600',
             },
           },
