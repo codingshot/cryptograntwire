@@ -66,7 +66,10 @@ export function NewsTicker() {
                       href={`https://twitter.com/${item.username}/status/${item.tweetId}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block px-2 cursor-pointer group"
+                      className="block px-2 cursor-pointer group animate-fade-in transition-opacity duration-500"
+                      style={{
+                        animation: `fade-in 0.5s ease-out`
+                      }}
                     >
                       <div className="flex items-center justify-between">
                         <p className="truncate flex-1 font-sans group-hover:underline text-foreground transition-colors">
