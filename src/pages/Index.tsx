@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -11,6 +10,12 @@ import { StatsSection } from '@/components/StatsSection';
 import { PoweredBySection } from '@/components/PoweredBySection';
 import { TeamSection } from '@/components/TeamSection';
 import { FAQSection } from '@/components/FAQSection';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselPrevious,
+  CarouselNext
+} from '@/components/ui/carousel';
 
 const Index = () => {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
@@ -77,15 +82,22 @@ const Index = () => {
 
         {/* Featured News */}
         <section className="py-16 bg-white">
-          <div className="container mx-auto px-4 md:px-6">
+          <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <div className="flex items-center justify-between mb-10">
-                <h2 className="font-serif text-3xl font-bold">Latest Updates</h2>
-                <Link to="/news" className="text-brand hover:underline flex items-center gap-1">
-                  View all <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-              <NewsFeed limit={3} />
+              <h2 className="font-serif text-3xl font-bold mb-10">Latest Updates</h2>
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="flex">
+                  <NewsFeed limit={3} />
+                </CarouselContent>
+                <CarouselPrevious className="-left-12" />
+                <CarouselNext className="-right-12" />
+              </Carousel>
             </div>
           </div>
         </section>

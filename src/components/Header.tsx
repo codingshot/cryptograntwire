@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SubmitNewsForm from "./SubmitNewsForm";
@@ -40,9 +39,6 @@ export default function Header() {
           <nav className="hidden md:flex items-center space-x-6 font-serif">
             <Link to="/news" className="text-[#403E43] hover:text-[#1A1F2C] transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-brand after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
               News
-            </Link>
-            <Link to="/learn" className="text-[#403E43] hover:text-[#1A1F2C] transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-brand after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
-              Learn
             </Link>
             <SubmitNewsForm />
             <Button 

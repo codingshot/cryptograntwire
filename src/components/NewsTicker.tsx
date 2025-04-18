@@ -1,8 +1,10 @@
+
 import { useEffect, useState } from "react";
 import { fetchNews } from "@/services/api";
 import { NewsItem } from "@/types";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { formatDistanceToNow } from 'date-fns';
 import {
   Tooltip,
   TooltipContent,
@@ -19,7 +21,7 @@ export function NewsTicker() {
     const getNews = async () => {
       try {
         const newsData = await fetchNews();
-        setNews(newsData.slice(0, 5)); // Get top 5 for the ticker
+        setNews(newsData.slice(0, 6)); // Get top 6 for the ticker
       } catch (error) {
         console.error("Failed to fetch news for ticker:", error);
       } finally {
@@ -31,10 +33,9 @@ export function NewsTicker() {
   }, []);
 
   useEffect(() => {
-    // Auto-rotate the news items
     if (news.length > 0) {
       const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % news.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 2) % news.length);
       }, 5000);
       
       return () => clearInterval(interval);
@@ -42,17 +43,11 @@ export function NewsTicker() {
   }, [news]);
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % news.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 2) % news.length);
   };
 
   const goToPrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + news.length) % news.length);
-  };
-
-  const truncateWords = (text: string, wordCount: number) => {
-    const words = text.split(' ');
-    if (words.length <= wordCount) return text;
-    return `${words.slice(0, wordCount).join(' ')}...`;
+    setCurrentIndex((prevIndex) => (prevIndex - 2 + news.length) % news.length);
   };
 
   if (loading || news.length === 0) {
@@ -62,6 +57,11 @@ export function NewsTicker() {
       </div>
     );
   }
+
+  const visibleNews = [
+    news[currentIndex],
+    news[(currentIndex + 1) % news.length]
+  ];
 
   return (
     <div className="w-full py-3 bg-[#F6F6F7] border-y border-gray-200">
@@ -75,38 +75,34 @@ export function NewsTicker() {
             <ChevronLeft className="h-4 w-4" />
           </button>
           
-          <div className="overflow-hidden flex-1 mx-2">
-            <div className="flex items-center">
-              <span className="text-news-dark font-serif font-bold mr-2">📰</span>
-              <div className="overflow-hidden w-full">
-                <div 
-                  className="whitespace-nowrap transition-transform duration-500 font-serif text-sm md:text-base"
-                  style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                >
-                  {news.map((item, index) => (
-                    <TooltipProvider key={item.tweetId || index}>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <a
-                            href={`https://twitter.com/${item.username}/status/${item.tweetId}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block w-full px-2 truncate hover:underline"
-                            aria-label={item.content}
-                          >
-                            {truncateWords(item.content, 6)}
-                          </a>
-                        </TooltipTrigger>
-                        <TooltipContent className="max-w-md">
-                          <p className="font-serif">{item.content}</p>
-                          <p className="text-sm text-gray-500 mt-1">@{item.username}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <div className="flex-1 mx-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {visibleNews.map((item, index) => (
+              <TooltipProvider key={item.tweetId || index}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href={`https://twitter.com/${item.username}/status/${item.tweetId}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block px-2"
+                    >
+                      <div className="flex items-center justify-between">
+                        <p className="truncate flex-1 font-serif hover:underline">
+                          {item.content}
+                        </p>
+                        <span className="text-xs text-gray-500 ml-2 whitespace-nowrap">
+                          {formatDistanceToNow(new Date(item.createdAt), { addSuffix: true })}
+                        </span>
+                      </div>
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-md">
+                    <p className="font-serif">{item.content}</p>
+                    <p className="text-sm text-gray-500 mt-1">@{item.username}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            ))}
           </div>
           
           <div className="flex items-center space-x-2">

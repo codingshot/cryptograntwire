@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital,wght@0,400;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -166,7 +166,7 @@
 /* Update font family definitions */
 @layer base {
   :root {
-    --font-serif: 'Spectral', Georgia, serif;
-    --font-sans: 'Instrument Sans', system-ui, sans-serif;
+    --font-serif: 'DM Serif Display', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
   }
 }

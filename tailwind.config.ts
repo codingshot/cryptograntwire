@@ -19,8 +19,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ["Spectral", "Georgia", "serif"],
-        sans: ["Instrument Sans", "system-ui", "sans-serif"],
+        serif: ["DM Serif Display", "Georgia", "serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
       },
       colors: {
         border: 'hsl(var(--border))',

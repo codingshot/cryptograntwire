@@ -1,8 +1,8 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { NewsItem } from "@/types";
-import { formatDate } from "@/services/api";
 import { ExternalLink } from "lucide-react";
+import { formatDistanceToNow } from "date-fns";
 
 interface NewsCardProps {
   item: NewsItem;
@@ -15,7 +15,7 @@ const NewsCard = ({ item, showCuratorNotes = true }: NewsCardProps) => {
       <CardContent className="p-0">
         <div className="border-b border-gray-100 bg-gray-50 px-4 py-2 flex justify-between items-center">
           <div className="text-[#8E9196] text-sm font-serif">
-            {formatDate(new Date(item.createdAt))}
+            {formatDistanceToNow(new Date(item.createdAt), { addSuffix: true })}
           </div>
           <a
             href={`https://x.com/${item.username}`}
