@@ -129,37 +129,14 @@ const NewsFeed = ({ limit }: NewsFeedProps) => {
     return limit ? filtered.slice(0, limit) : filtered;
   }, [news, searchTerm, timeFilter, sortOrder, showCuratorNotes, searchBy, limit]);
 
-  if (isLoading) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[400px]">
-        <Loader2 className="h-8 w-8 text-brand animate-spin mb-2" />
-        <p className="text-[#8E9196] font-serif">Loading latest updates...</p>
-      </div>
-    );
-  }
-
-  if (error && news.length === 0) {
-    return (
-      <div className="bg-red-50 border-l-4 border-red-500 p-6 text-center">
-        <p className="text-red-800 font-serif">{error}</p>
-        <button 
-          className="mt-4 px-4 py-2 bg-brand text-white rounded-md hover:bg-brand/90 transition-colors font-serif"
-          onClick={() => window.location.reload()}
-        >
-          Try Again
-        </button>
-      </div>
-    );
-  }
-
   const renderNewsContent = () => {
     if (filteredNews.length === 0) {
       return <EmptyState resetFilters={resetFilters} searchTerm={searchTerm} />;
     }
 
     if (limit) {
-      return filteredNews.slice(0, limit).map((item) => (
-        <CarouselItem key={item.tweetId} className="basis-full md:basis-1/3">
+      return filteredNews.map((item) => (
+        <CarouselItem key={item.tweetId} className="md:basis-1/3 sm:basis-1/2 basis-full pl-4">
           <NewsCard 
             item={item} 
             showCuratorNotes={showCuratorNotes}

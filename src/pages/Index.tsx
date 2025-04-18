@@ -73,7 +73,7 @@ const Index = () => {
                 }}
                 className="w-full"
               >
-                <CarouselContent className="-ml-4">
+                <CarouselContent className="-ml-4 flex">
                   <NewsFeed limit={6} />
                 </CarouselContent>
                 <div className="hidden md:flex">
