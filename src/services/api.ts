@@ -5,7 +5,7 @@ import { defaultNewsData } from '@/utils/defaultData';
 export const fetchNews = async (): Promise<NewsItem[]> => {
   try {
     console.log('Starting API request to RSS feed');
-    const response = await fetch('https://cryptograntwire-rss.up.railway.app/api/items');
+    const response = await fetch('https://stablecoins-rss.up.railway.app/api/items');
     
     if (!response.ok) {
       console.error(`API responded with status: ${response.status}`);

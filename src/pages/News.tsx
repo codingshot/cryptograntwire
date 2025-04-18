@@ -21,11 +21,11 @@ const News = () => {
           <section className={`mb-8 transition-opacity duration-700 ${isPageLoaded ? 'opacity-100' : 'opacity-0'}`}>
             <div className="text-center space-y-4">
               <h1 className="font-serif text-4xl md:text-5xl font-bold text-[#1A1F2C] mb-3 tracking-tight">
-                Latest in Web3 Grants & Governance
+                Latest in Stablecoins & Web3
               </h1>
               <Separator className="w-16 h-0.5 bg-brand mx-auto" />
               <p className="text-lg text-[#403E43] max-w-2xl mx-auto font-serif leading-relaxed">
-                An update feed detailing the happenings across Web3 grants, DAO Governance, and insightful analysis.
+                Real-time updates on stablecoins, regulations, and industry developments from verified sources.
               </p>
             </div>
           </section>

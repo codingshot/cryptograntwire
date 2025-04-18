@@ -13,16 +13,16 @@ export default function Header() {
               alt="Crypto Grant Wire logo" 
               className="h-10 md:h-12" 
             />
-            <span className="font-semibold text-xl">
+            <span className="font-serif font-semibold text-xl text-[#1A1F2C]">
               Crypto Grant Wire
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/news" className="text-gray-600 hover:text-gray-900">
+          <nav className="hidden md:flex items-center space-x-6 font-serif">
+            <Link to="/news" className="text-[#403E43] hover:text-[#1A1F2C] transition-colors">
               News
             </Link>
-            <Link to="/learn" className="text-gray-600 hover:text-gray-900">
+            <Link to="/learn" className="text-[#403E43] hover:text-[#1A1F2C] transition-colors">
               Learn
             </Link>
             <SubmitNewsForm />
@@ -30,7 +30,7 @@ export default function Header() {
               href="https://t.me/cryptograntwire"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900"
+              className="text-[#403E43] hover:text-[#1A1F2C] transition-colors"
             >
               Telegram
             </a>
