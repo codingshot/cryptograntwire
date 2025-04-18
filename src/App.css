@@ -5,6 +5,71 @@
   min-height: 100vh;
 }
 
+/* Typography Enhancements for Newspaper Feel */
+.headline {
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.subheadline {
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.byline {
+  font-style: italic;
+  color: #6b7280;
+}
+
+.dateline {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.pullquote {
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  padding-left: 1rem;
+  border-left: 3px solid #2775C9;
+  margin: 1.5rem 0;
+}
+
+/* Hover Effects */
+.link-hover {
+  position: relative;
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.link-hover:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Card Styles */
+.news-card {
+  transition: all 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
 /* Transitions */
 .fade-enter {
   opacity: 0;
@@ -19,4 +84,35 @@
 .fade-exit-active {
   opacity: 0;
   transition: opacity 300ms;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus Styles for Keyboard Navigation */
+:focus-visible {
+  outline: 2px solid #2775C9;
+  outline-offset: 2px;
+}
+
+/* Skip Link for Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #2775C9;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
 }

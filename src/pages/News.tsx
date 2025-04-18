@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import NewsFeed from '@/components/NewsFeed';
 import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
+import { ExternalLink } from 'lucide-react';
 
 const News = () => {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
@@ -27,6 +29,21 @@ const News = () => {
               <p className="text-lg text-[#403E43] max-w-2xl mx-auto font-serif leading-relaxed">
                 An update feed detailing the happenings across Web3 grants, DAO Governance, and insightful analysis.
               </p>
+              <div className="pt-4">
+                <Button 
+                  className="font-serif flex items-center gap-2"
+                  variant="outline"
+                  asChild
+                >
+                  <a 
+                    href="https://t.me/cryptograntwire" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    Subscribe to updates <ExternalLink className="h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
             </div>
           </section>
           
